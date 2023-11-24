@@ -1,0 +1,21 @@
+[package]
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { version = "*" }
+clap = { version = "*", features = ["derive", "env"] }
+tokio = { version = "*", features = ["full"] }
+axum = { version = "*" }
+reqwest = { version = "*", default-features = false, features = ["rustls"] }
+serde_json = { version = "*" }
+diesel = { version = "*", features = [
+    "postgres",
+    "postgres_backend",
+    "serde_json",
+] }
+diesel-async = { version = "*", features = ["bb8", "postgres"] }
+percent-encoding = { version = "*" }
+bb8 = { version = "*" }
+bb8-async-memcached = { git = "https://github.com/Magicloud/bb8-async-memcached.git" }
