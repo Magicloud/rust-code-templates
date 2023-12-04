@@ -2,15 +2,15 @@ use clap::*;
 
 #[derive(Parser, Clone, Debug)]
 pub struct PGParams {
-    #[arg(short, long, env = "PGHOST")]
+    #[arg(long, env = "PGHOST")]
     pub pg_host: String,
-    #[arg(short, long, env = "PGPORT", default_value = "5432")]
+    #[arg(long, env = "PGPORT", default_value = "5432")]
     pub pg_port: u16,
-    #[arg(short, long, env = "PGDATABASE")]
+    #[arg(long, env = "PGDATABASE")]
     pub pg_database: String,
-    #[arg(short, long, env = "PGUSERNAME")]
+    #[arg(long, env = "PGUSERNAME")]
     pub pg_username: String,
-    #[arg(short, long, env = "PGPASSWORD")]
+    #[arg(long, env = "PGPASSWORD")]
     pub pg_password: String,
 }
 

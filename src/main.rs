@@ -2,6 +2,8 @@ mod parameters;
 mod handlers;
 mod app_state;
 
+use std::sync::Arc;
+
 use axum::{ Router, routing::{ post, get } };
 use clap::Parser;
 use diesel_async::{
@@ -39,7 +41,8 @@ async fn main() -> anyhow::Result<()> {
         .route("/heart_beat", get(heart_beat))
         .route("/status", get(status))
         .with_state(Arc::new(state));
-    axum::Server::bind(&args.listen_address.parse()?).serve(app.into_make_service()).await?;
+    let listener = tokio::net::TcpListener::bind(args.listen_address).await.unwrap();
+    axum::serve(listener, app).await.unwrap();
 
     Ok(())
 }

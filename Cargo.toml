@@ -1,6 +1,6 @@
 [package]
 name = "{{project-name}}"
-version = "0.1.0"
+version = "2023.12.4"
 edition = "2021"
 
 [dependencies]
