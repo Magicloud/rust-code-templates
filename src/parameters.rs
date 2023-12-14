@@ -19,7 +19,7 @@ pub struct PGParams {
 pub struct Params {
     #[command(flatten)]
     pub pg_params: PGParams,
-    #[arg(short, long, default_value = "memcache://localhost:11211")]
+    #[arg(short, long, default_value = "localhost:11211")]
     pub memcached_address: String,
     #[arg(short, long, default_value = "localhost:3000")]
     pub listen_address: String,
