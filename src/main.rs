@@ -38,7 +38,6 @@ async fn main() -> anyhow::Result<()> {
     let mc_result: Result<_> = try {
         let mc_manager = MemcacheConnectionManager { uri: args.memcached_address };
         let mc_pool = bb8::Pool::builder().build(mc_manager).await?;
-        mc_pool.get().await?.version().await?;
         mc_pool
     };
     if let Err(e) = mc_result {
@@ -58,7 +57,6 @@ async fn main() -> anyhow::Result<()> {
         );
         let pg_manager = AsyncDieselConnectionManager::<AsyncPgConnection>::new(pg_conn_str);
         let pg_pool = Pool::builder().build(pg_manager).await?;
-        pg_pool.get().await?.begin_test_transaction().await?;
         pg_pool
     };
     if let Err(e) = pg_result {
